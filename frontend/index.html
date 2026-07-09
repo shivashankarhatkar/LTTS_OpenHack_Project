@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Enterprise Knowledge Assistant
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="static/css/styles.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <header class="header">
+
+            <div class="logo">
+
+                Enterprise Knowledge Assistant
+
+            </div>
+
+            <div
+                id="connection-status"
+                class="status disconnected"
+            >
+                Disconnected
+            </div>
+
+        </header>
+
+        <main class="main-content">
+
+            <section class="chat-panel">
+
+                <div
+                    id="chat-container"
+                    class="chat-container"
+                >
+
+                    <div class="assistant-message">
+
+                        <div class="message-header">
+
+                            Assistant
+
+                        </div>
+
+                        <div class="message-body">
+
+                            Welcome to the Enterprise Knowledge Assistant.
+
+                            Ask a question about your enterprise documents,
+                            knowledge graph or institutional memory.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <form
+                    id="chat-form"
+                    class="chat-form"
+                >
+
+                    <textarea
+                        id="query"
+                        rows="3"
+                        placeholder="Ask anything about your enterprise knowledge..."
+                        required
+                    ></textarea>
+
+                    <button
+                        id="send-button"
+                        type="submit"
+                    >
+                        Send
+                    </button>
+
+                </form>
+
+            </section>
+
+            <aside class="side-panel">
+
+                <div class="panel-card">
+
+                    <h3>
+
+                        Confidence
+
+                    </h3>
+
+                    <div id="confidence">
+
+                        --
+
+                    </div>
+
+                </div>
+
+                <div class="panel-card">
+
+                    <h3>
+
+                        Validation
+
+                    </h3>
+
+                    <div id="validation">
+
+                        --
+
+                    </div>
+
+                </div>
+
+                <div class="panel-card">
+
+                    <h3>
+
+                        Citations
+
+                    </h3>
+
+                    <ul id="citations">
+
+                    </ul>
+
+                </div>
+
+            </aside>
+
+        </main>
+
+    </div>
+
+    <script src="static/js/app.js"></script>
+
+</body>
+
+</html>

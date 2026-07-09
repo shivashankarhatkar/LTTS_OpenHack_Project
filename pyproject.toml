@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enterprise-knowledge-assistant"
+version = "1.0.0"
+description = "Enterprise Knowledge Assistant with Hybrid GraphRAG"
+requires-python = ">=3.12"
+
+authors = [
+    { name = "Shrinath Patil" }
+]
+
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+pythonpath = ["."]
+addopts = "-v"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"

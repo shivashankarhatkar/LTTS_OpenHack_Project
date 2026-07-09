@@ -1,631 +1,586 @@
-# Enterprise Knowledge Assistant
+# 🚀 Enterprise Knowledge Assistant (Hybrid GraphRAG + Knowledge Graph)
 
-An enterprise-grade AI-powered knowledge management platform that combines **GraphRAG**, **Hybrid Retrieval**, **Knowledge Graphs**, and **LangGraph** to deliver accurate, explainable, and citation-backed answers from organizational knowledge.
+> **Enterprise AI Knowledge Assistant powered by Hybrid GraphRAG, Knowledge Graphs, LangGraph Multi-Agent Orchestration, ChromaDB, Neo4j, FastAPI, and Google Gemini.**
 
-The system transforms unstructured enterprise documents into structured knowledge by extracting entities, relationships, policies, and claims while maintaining a vector database for semantic retrieval. By combining symbolic reasoning from a Knowledge Graph with semantic search from Vector Retrieval, the assistant provides reliable responses with confidence scoring and hallucination validation.
-
----
-
-# Features
-
-## Enterprise Document Ingestion
-
-- PDF support
-- DOCX support
-- PPTX support
-- Automatic text extraction
-- Intelligent document chunking
-- Metadata extraction
-- Embedding generation
-- ChromaDB indexing
-- Neo4j Knowledge Graph generation
+An enterprise-grade AI assistant designed to transform unstructured organizational knowledge into an intelligent, searchable knowledge ecosystem. The platform combines **Vector Retrieval (RAG)**, **Knowledge Graph Retrieval**, **BM25 Keyword Search**, and **LLM-powered reasoning** to provide highly accurate, context-aware, and explainable responses for enterprise users.
 
 ---
 
-## Knowledge Graph
+# 📖 Overview
 
-- Automatic entity extraction
-- Relationship extraction
-- Entity resolution
-- Ontology mapping
-- Graph traversal
-- Graph search
-- Graph-based retrieval
+Modern organizations generate thousands of documents including:
 
----
+- Employee Handbooks
+- HR Policies
+- IT Security Policies
+- Project Documentation
+- API Documentation
+- Architecture Documents
+- Engineering Guidelines
+- Meeting Notes
+- SOPs
+- Internal Knowledge Articles
 
-## Hybrid Retrieval
+Traditional keyword search cannot understand relationships between enterprise entities such as employees, departments, projects, technologies, applications, policies, and processes.
 
-The retrieval engine combines multiple retrieval techniques.
-
-- Dense Vector Retrieval
-- Knowledge Graph Retrieval
-- Keyword (BM25) Retrieval
-- Context Fusion
-- Result Re-ranking
-
-This significantly improves retrieval accuracy over traditional RAG systems.
+This project addresses this challenge by combining **Knowledge Graphs** with **Hybrid Retrieval-Augmented Generation (Hybrid GraphRAG)**, enabling semantic search, graph traversal, contextual reasoning, and explainable AI responses.
 
 ---
 
-## GraphRAG
+# ✨ Key Features
 
-GraphRAG combines semantic retrieval with graph reasoning.
+## 📄 Enterprise Document Ingestion
 
-Pipeline
+Supports ingestion of enterprise documents including:
 
+- PDF
+- DOCX
+- TXT *(Extensible)*
+- Markdown *(Extensible)*
 
+Every uploaded document automatically goes through an enterprise ingestion pipeline including:
+
+- Text Extraction
+- Text Cleaning
+- Language Detection
+- Metadata Extraction
+- Semantic Chunking
+- Embedding Generation
+- Vector Indexing
+- BM25 Indexing
+- Entity Extraction
+- Relationship Extraction
+- Knowledge Graph Construction
+
+---
+
+## 🔍 Hybrid Retrieval
+
+Instead of relying only on vector search, the platform combines three retrieval strategies.
+
+### 🧠 Vector Search
+
+- ChromaDB
+- Sentence Transformers
+- Semantic Similarity Search
+
+Suitable for:
+
+- Natural language queries
+- Semantic document retrieval
+- Context retrieval
+
+---
+
+### 🕸 Knowledge Graph Search
+
+Powered by **Neo4j**.
+
+Retrieves:
+
+- Entities
+- Relationships
+- Organizational hierarchy
+- Connected enterprise knowledge
+
+Suitable for:
+
+- Multi-hop reasoning
+- Relationship discovery
+- Connected enterprise knowledge
+
+---
+
+### 🔎 BM25 Keyword Search
+
+Traditional lexical retrieval for:
+
+- Exact keywords
+- Technical identifiers
+- Error codes
+- API names
+- Policy numbers
+
+---
+
+# 🧩 Hybrid GraphRAG
+
+The platform combines all retrieval sources into a unified enterprise context before passing it to the LLM.
+
+```text
+Vector Search
+       │
+       ▼
+Knowledge Graph
+       │
+       ▼
+BM25 Search
+       │
+       ▼
+Context Fusion
+       │
+       ▼
+Gemini LLM
+       │
+       ▼
+Enterprise Response
+```
+
+---
+
+# 🌐 Enterprise Knowledge Graph
+
+The system automatically builds an enterprise Knowledge Graph during ingestion.
+
+Extracted entities include:
+
+- Organization
+- Employee
+- Department
+- Team
+- Product
+- Project
+- Technology
+- Application
+- Tool
+- Policy
+- Database
+- API
+- Process
+- Location
+- Infrastructure
+
+### Example Graph
+
+```text
+TechNova Solutions
+        │
+        ├──────────────► HR Department
+        │
+        ├──────────────► IT Helpdesk
+        │
+        ├──────────────► Project Phoenix
+        │                     │
+        │                     ├────────► FastAPI
+        │                     ├────────► Neo4j
+        │                     ├────────► ChromaDB
+        │                     ├────────► LangGraph
+        │                     ├────────► Gemini
+        │                     └────────► Redis
+        │
+        └──────────────► HR Portal
+```
+
+The graph continuously grows as additional enterprise documents are ingested.
+
+---
+
+# 🤖 Multi-Agent Workflow
+
+The complete query pipeline is orchestrated using **LangGraph**, where every agent is responsible for a dedicated task.
+
+```text
+                    User Query
+                         │
+                         ▼
+                  Router Agent
+                         │
+                         ▼
+                Document QA Agent
+                         │
+                         ▼
+                 Hybrid GraphRAG
+                         │
+                         ▼
+             Answer Generation Agent
+                         │
+                         ▼
+              Summarization Agent
+                         │
+                         ▼
+                Citation Agent
+                         │
+                         ▼
+               Validation Agent
+                         │
+                         ▼
+                 Final AI Response
+```
+
+---
+
+# 📥 End-to-End Ingestion Pipeline
+
+Whenever a document is uploaded, the following workflow executes automatically.
+
+```text
+Upload Document
+        │
+        ▼
+Document Parser
+        │
+        ▼
+Text Cleaner
+        │
+        ▼
+Language Detection
+        │
+        ▼
+Metadata Extraction
+        │
+        ▼
+Semantic Chunking
+        │
+        ▼
+Embedding Generation
+        │
+        ▼
+BM25 Index
+        │
+        ▼
+ChromaDB Vector Store
+        │
+        ▼
+Entity Extraction
+        │
+        ▼
+Relationship Extraction
+        │
+        ▼
+Entity Resolution
+        │
+        ▼
+Knowledge Graph Construction
+        │
+        ▼
+Neo4j
+```
+
+---
+
+# 💬 Query Workflow
+
+The complete enterprise query lifecycle.
+
+```text
 User Query
+      │
+      ▼
+LangGraph Router
       │
       ▼
 Hybrid Retriever
       │
-      ▼
-Context Builder
+      ├────────► Vector Search
       │
-      ▼
-Prompt Builder
+      ├────────► Knowledge Graph Search
       │
-      ▼
-Gemini
-      │
-      ▼
-Answer Generations
-
----
-
-## LangGraph Multi-Agent Workflow
-
-The assistant uses LangGraph for orchestration.
-
-```text
-                 User Query
-                      │
-                      ▼
-               Router Agent
-              ┌──────────────┐
-              ▼              ▼
-     Document QA        Graph QA
-              │              │
-              └──────┬───────┘
-                     ▼
-            Summarization Agent
-                     ▼
-              Citation Agent
-                     ▼
-             Validation Agent
-                     ▼
-               Final Response
+      └────────► BM25 Search
+                    │
+                    ▼
+             Context Fusion
+                    │
+                    ▼
+           Prompt Construction
+                    │
+                    ▼
+            Google Gemini
+                    │
+                    ▼
+         Response Generation
+                    │
+                    ▼
+          Citation Generation
+                    │
+                    ▼
+       Hallucination Validation
+                    │
+                    ▼
+          Final Enterprise Answer
 ```
 
 ---
 
-## Enterprise Features
+# ✅ Current Capabilities
 
-- Multi-agent architecture
-- GraphRAG
-- Hybrid Retrieval
-- Knowledge Graph
-- Citation generation
-- Confidence scoring
-- Hallucination detection
-- Conversation memory
-- Institutional memory
-- JWT Authentication
-- Audit logging
-- REST APIs
-- Docker support
-
----
-
-# Architecture
-
-```text
-                        Frontend
-                           │
-                           ▼
-                      FastAPI APIs
-                           │
-                           ▼
-                     Chat Service
-                           │
-                           ▼
-                   LangGraph Workflow
-                           │
-      ┌────────────────────┴────────────────────┐
-      ▼                                         ▼
-Document QA Agent                       Graph QA Agent
-      │                                         │
-      └────────────────────┬────────────────────┘
-                           ▼
-                    Hybrid Retriever
-        ┌────────────┬──────────────┬─────────────┐
-        ▼            ▼              ▼
-    Vector DB   Knowledge Graph   Keyword Search
-        │            │              │
-        └────────────┴──────────────┘
-                     ▼
-              Context Builder
-                     ▼
-              Prompt Builder
-                     ▼
-                 Gemini LLM
-                     ▼
-              Answer Generator
-                     ▼
-              Citation Builder
-                     ▼
-          Hallucination Guard
-                     ▼
-               Final Response
-```
+- ✅ Enterprise document ingestion
+- ✅ Semantic chunk generation
+- ✅ Sentence Transformer embeddings
+- ✅ ChromaDB vector storage
+- ✅ Neo4j Knowledge Graph
+- ✅ Entity extraction using Gemini
+- ✅ Relationship extraction using Gemini
+- ✅ Entity resolution
+- ✅ Hybrid Retrieval
+- ✅ GraphRAG
+- ✅ LangGraph workflow orchestration
+- ✅ Citation generation pipeline
+- ✅ Hallucination validation
+- ✅ FastAPI REST APIs
+- ✅ Interactive Swagger documentation
+- ✅ Modular enterprise architecture
 
 ---
 
-# Technology Stack
+# 💡 Why Hybrid GraphRAG?
 
-## Backend
+Traditional RAG systems rely only on vector similarity, which may miss explicit relationships between enterprise concepts.
 
-- Python
-- FastAPI
-- LangGraph
-- LangChain
-- Pydantic
+This project enhances retrieval by combining:
 
----
+- **Semantic Search (ChromaDB)** – Finds contextually similar information.
+- **Knowledge Graph (Neo4j)** – Captures entities and relationships for graph-based reasoning.
+- **BM25 Retrieval** – Handles exact keyword and technical term matching.
 
-## AI
-
-- Google Gemini
-- Sentence Transformers
-- all-MiniLM-L6-v2
+By fusing these retrieval methods before sending context to the LLM, the assistant can generate responses that are richer, more explainable, and better aligned with enterprise knowledge than a vector-only RAG approach.
 
 ---
 
-## Knowledge Layer
+# 🛠 Technology Stack
 
-- Neo4j
-- ChromaDB
-
----
-
-## Document Processing
-
-- PyMuPDF
-- python-docx
-- python-pptx
-
----
-
-## Security
-
-- JWT
-- Passlib
-- BCrypt
+| Category | Technologies |
+|----------|--------------|
+| Backend | FastAPI, Python |
+| LLM | Google Gemini 2.5 Flash |
+| AI Framework | LangGraph |
+| Vector Database | ChromaDB |
+| Graph Database | Neo4j AuraDB |
+| Embeddings | Sentence Transformers (all-MiniLM-L6-v2) |
+| Retrieval | Hybrid (Vector + Graph + BM25) |
+| Document Parsing | PDF, DOCX |
+| Frontend | HTML, CSS, JavaScript |
+| Deployment | Docker, Uvicorn |
 
 ---
 
-## Deployment
-
-- Docker
-- Docker Compose
-
----
-
-# Project Structure
+# 📂 Project Structure
 
 ```text
 app/
-│
 ├── api/
-├── core/
+├── connectors/
+├── embeddings/
 ├── extraction/
-├── graph/
 ├── graphrag/
 ├── ingestion/
+├── knowledge_graph/
 ├── llm/
-├── memory/
-├── models/
-├── ontology/
 ├── orchestration/
-├── parsers/
-├── pipelines/
 ├── retrieval/
-├── schemas/
-├── security/
 ├── services/
-├── utils/
 ├── vector_store/
-└── workers/
-
-frontend/
-│
-├── index.html
-└── static/
-    ├── css/
-    └── js/
-
-tests/
-
-docker/
+└── models/
 ```
 
 ---
 
-# Design Principles
+# ⚙️ Installation
 
-- Clean Architecture
-- Modular Design
-- Separation of Concerns
-- Dependency Injection
-- Service-Oriented Components
-- Multi-Agent Orchestration
-- Enterprise Scalability
-- Explainable AI
-- Retrieval-Augmented Generation
-- Knowledge Graph Reasoning
-
----
-
-# Installation
-
-## Prerequisites
-
-Before running the project, ensure the following software is installed.
-
-- Python 3.12+
-- Git
-- Docker (Optional)
-- Docker Compose (Optional)
-- Neo4j 5+
-- ChromaDB
-- Google Gemini API Key
-
----
-
-# Clone Repository
+### Clone Repository
 
 ```bash
 git clone <repository-url>
-
-cd Enterprise_Knowledge_Assistant
+cd Enterprise-Knowledge-Assistant
 ```
 
----
-
-# Create Virtual Environment
-
-### Windows
+### Create Virtual Environment
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
-Activate
+### Activate Environment
+
+**Windows**
 
 ```bash
-venv\Scripts\activate
+.venv\Scripts\activate
 ```
 
----
-
-### Linux / macOS
+**Linux / Mac**
 
 ```bash
-python3 -m venv venv
-
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
----
-
-# Install Dependencies
+### Install Dependencies
 
 ```bash
-pip install --upgrade pip
-
 pip install -r requirements.txt
 ```
 
 ---
 
-# Environment Variables
+# 🔑 Environment Variables
 
-Create a file named
-
-```text
-.env
-```
-
-Example
+Create a `.env` file in the project root.
 
 ```env
-# ===========================================
-# Application
-# ===========================================
-
-APP_NAME=Enterprise Knowledge Assistant
-
-ENVIRONMENT=development
-
-DEBUG=True
-
-HOST=0.0.0.0
-
-PORT=8000
-
-# ===========================================
-# Gemini
-# ===========================================
-
 GEMINI_API_KEY=your_api_key
 
 GEMINI_MODEL=gemini-2.5-flash
 
-# ===========================================
-# Neo4j
-# ===========================================
-
-NEO4J_URI=neo4j+s://xxxxxxxx.databases.neo4j.io
-
+NEO4J_URI=neo4j+s://xxxxx.databases.neo4j.io
 NEO4J_USERNAME=neo4j
-
 NEO4J_PASSWORD=your_password
+NEO4J_DATABASE=neo4j
 
-# ===========================================
-# ChromaDB
-# ===========================================
-
-CHROMA_HOST=localhost
-
-CHROMA_PORT=8000
-
-CHROMA_COLLECTION=enterprise_chunks
-
-# ===========================================
-# Embedding Model
-# ===========================================
-
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-
-# ===========================================
-# JWT
-# ===========================================
-
-JWT_SECRET_KEY=replace_with_secure_secret
-
-JWT_ALGORITHM=HS256
-
-JWT_EXPIRE_MINUTES=60
-
-# ===========================================
-# Logging
-# ===========================================
-
-LOG_LEVEL=INFO
-
-LOG_DIRECTORY=logs
-
-AUDIT_LOG_PATH=logs/audit.log
-
-# ===========================================
-# Uploads
-# ===========================================
-
-UPLOAD_DIRECTORY=data/uploads
+CHROMA_DB_PATH=./data/chroma
 ```
 
 ---
 
-# Create Required Directories
-
-```text
-logs/
-
-data/
-
-data/uploads/
-
-data/chroma/
-```
-
----
-
-# Running ChromaDB
-
-If using Docker
-
-```bash
-docker run \
--p 8000:8000 \
-chromadb/chroma
-```
-
-Or run your existing Chroma server.
-
----
-
-# Running Neo4j
-
-If using Neo4j Desktop
-
-Start the database and copy
-
-- URI
-- Username
-- Password
-
-into
-
-```
-.env
-```
-
----
-
-# Start FastAPI
+# ▶️ Run the Project
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Application
-
-```
-http://localhost:8000
-```
-
-Swagger
+Swagger UI
 
 ```
 http://localhost:8000/docs
 ```
 
-Redoc
+---
 
-```
-http://localhost:8000/redoc
+# 🔌 API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/api/v1/ingestion/upload` | Upload enterprise documents |
+| POST | `/api/v1/chat` | Ask questions over enterprise knowledge |
+
+---
+
+# 🔄 System Workflow
+
+## Document Ingestion
+
+```text
+Upload
+   ↓
+Parser
+   ↓
+Cleaner
+   ↓
+Metadata Extraction
+   ↓
+Semantic Chunking
+   ↓
+Embeddings
+   ↓
+ChromaDB
+   ↓
+BM25
+   ↓
+Entity Extraction
+   ↓
+Relationship Extraction
+   ↓
+Knowledge Graph
 ```
 
 ---
 
-# Frontend
+## Query Pipeline
 
-Open
-
-```
-frontend/index.html
-```
-
-or serve it using a lightweight web server.
-
-Example
-
-```bash
-python -m http.server 5500
-```
-
-Open
-
-```
-http://localhost:5500/frontend
-```
-
----
-
-# Docker Deployment
-
-Build image
-
-```bash
-docker build \
--f docker/Dockerfile \
--t enterprise-knowledge-assistant .
-```
-
-Run
-
-```bash
-docker compose \
--f docker/docker-compose.yml up --build
-```
-
-Detached mode
-
-```bash
-docker compose \
--f docker/docker-compose.yml up -d
-```
-
-Stop
-
-```bash
-docker compose \
--f docker/docker-compose.yml down
+```text
+User Query
+     ↓
+Router Agent
+     ↓
+Hybrid Retrieval
+     ├── ChromaDB
+     ├── Neo4j
+     └── BM25
+          ↓
+Context Builder
+          ↓
+Gemini
+          ↓
+Summarization
+          ↓
+Citation
+          ↓
+Validation
+          ↓
+Final Response
 ```
 
 ---
 
-# Running Tests
+# 📈 Current Features
 
-Run all tests
+- Hybrid GraphRAG
+- LangGraph Multi-Agent Workflow
+- Enterprise Knowledge Graph
+- Vector Search (ChromaDB)
+- Graph Search (Neo4j)
+- BM25 Keyword Retrieval
+- Automatic Entity Extraction
+- Automatic Relationship Extraction
+- Semantic Chunking
+- Citation Generation
+- Hallucination Validation
+- REST APIs with FastAPI
 
-```bash
-pytest
+---
+
+# 🚀 Future Enhancements
+
+- Multi-document conversation memory
+- User authentication & RBAC
+- Incremental document ingestion
+- Graph visualization dashboard
+- Feedback-based answer improvement
+- Multi-LLM support (OpenAI, Claude, Llama)
+- Redis caching
+- Streaming responses
+- Enterprise document versioning
+
+---
+
+# 📸 Screenshots
+
+Add screenshots here.
+
+### Home Page
+
+```
+docs/screenshots/home.png
 ```
 
-Integration tests
+### Document Upload
 
-```bash
-pytest tests/integration
+```
+docs/screenshots/upload.png
 ```
 
-End-to-End tests
+### Chat Interface
 
-```bash
-pytest tests/e2e
+```
+docs/screenshots/chat.png
 ```
 
-Verbose
+### Neo4j Knowledge Graph
 
-```bash
-pytest -v
 ```
-
-Coverage
-
-```bash
-pytest --cov=app
+docs/screenshots/neo4j_graph.png
 ```
 
 ---
 
-# Configuration
+# 👨‍💻 Author
 
-Most project settings are managed from
+**Shrinath Patil**
 
-```
-app/core/config/settings.py
-```
+Final Year B.E. Computer Science Engineering
 
-This includes
-
-- API configuration
-- Neo4j
-- ChromaDB
-- Gemini
-- JWT
-- Logging
-- Upload directory
-- Embedding model
+Enterprise AI | GraphRAG | LangGraph | Knowledge Graphs | Generative AI
 
 ---
 
-# Supported Document Types
+# 📄 License
 
-Current ingestion supports
-
-- PDF
-- DOCX
-- PPTX
-
-The architecture allows additional parsers to be added without modifying the ingestion workflow.
-
----
-
-# Deployment Checklist
-
-Before deploying ensure
-
-- Python dependencies installed
-- Gemini API configured
-- Neo4j running
-- ChromaDB running
-- Environment variables configured
-- Upload directory created
-- Logs directory created
-- Docker containers healthy (if using Docker)
-- API reachable
-- Frontend connected to backend
-
----
+This project is intended for educational, research, and enterprise demonstration purposes.

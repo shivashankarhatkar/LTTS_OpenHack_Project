@@ -60,17 +60,21 @@ class Neo4jRepository:
         self,
         query: str,
         parameters: dict[str, Any] | None = None,
-    ):
+        ) -> list:
         """
-        Execute a Cypher query.
+            Execute a Cypher query and return all records.
         """
 
         with self.driver.session() as session:
 
-            return session.run(
+            result = session.run(
                 query,
                 parameters or {},
             )
+
+            records = list(result)
+
+            return records
 
     def create_node(
         self,
@@ -151,13 +155,17 @@ class Neo4jRepository:
             },
         )
 
-        record = result.single()
+        records = self.execute_query(
+            query=query,
+            parameters={
+                "entity_id": entity_id,
+            },
+        )
 
-        if record is None:
-
+        if not records:
             return None
 
-        return record["n"]
+        return records[0]["n"]
 
     def clear_database(
         self,

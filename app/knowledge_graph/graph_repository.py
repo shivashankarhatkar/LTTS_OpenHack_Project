@@ -44,7 +44,14 @@ class GraphRepository:
 
         neo4j_repository.create_node(
             label=entity.entity_type,
-            properties=entity.to_dict(),
+            properties={
+                "entity_id": entity.entity_id,
+                "name": entity.name,
+                "entity_type": entity.entity_type,
+                "description": entity.description,
+                "confidence": entity.confidence,
+                "aliases": entity.aliases,
+                },
         )
 
     def add_entities(
@@ -86,7 +93,10 @@ class GraphRepository:
             source_id=relationship.source_entity_id,
             target_id=relationship.target_entity_id,
             relationship=relationship.relationship_type,
-            properties=relationship.to_dict(),
+            properties={
+                "relationship_id": relationship.relationship_id,
+                "confidence": relationship.confidence,
+                },
         )
 
     def add_relationships(

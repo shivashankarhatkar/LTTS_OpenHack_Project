@@ -3,7 +3,7 @@ Document ingestion service.
 
 Coordinates the complete enterprise ingestion pipeline.
 
-Pipeline:
+Pipeline
 
 Upload
     ↓
@@ -19,9 +19,15 @@ Semantic Chunking
     ↓
 Embedding Generation
     ↓
+BM25 Indexing
+    ↓
 ChromaDB Indexing
     ↓
-BM25 Indexing
+Entity Extraction
+    ↓
+Relationship Extraction
+    ↓
+Entity Resolution
     ↓
 Knowledge Graph Construction
 """
@@ -71,6 +77,18 @@ from app.knowledge_graph.graph_repository import (
     graph_repository,
 )
 
+from app.models.entity import (
+    Entity,
+)
+
+from app.models.relationship import (
+    Relationship,
+)
+
+from app.resolution.entity_resolver import (
+    entity_resolver,
+)
+
 from app.retrieval.keyword.keyword_retriever import (
     keyword_retriever,
 )
@@ -98,9 +116,9 @@ class IngestionResult:
 
     total_chunks: int
 
-    entities: list[dict]
+    entities: list[Entity]
 
-    relationships: list[dict]
+    relationships: list[Relationship]
 
 
 class IngestionService:
@@ -108,7 +126,9 @@ class IngestionService:
     Enterprise document ingestion service.
     """
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+    ) -> None:
 
         self.chunker = SemanticChunker()
 
@@ -118,13 +138,6 @@ class IngestionService:
     ) -> IngestionResult:
         """
         Execute the complete ingestion pipeline.
-
-        Args:
-            file_path:
-                Uploaded document path.
-
-        Returns:
-            IngestionResult
         """
 
         logger.info(
@@ -164,7 +177,7 @@ class IngestionService:
             "Document cleaned."
         )
 
-        # --------------------------------------------------
+            # --------------------------------------------------
         # Detect Language
         # --------------------------------------------------
 
@@ -192,7 +205,7 @@ class IngestionService:
         )
 
         # --------------------------------------------------
-        # Chunk Document
+        # Semantic Chunking
         # --------------------------------------------------
 
         chunks = self.chunker.chunk(
@@ -218,17 +231,21 @@ class IngestionService:
         )
 
         # --------------------------------------------------
-        # Build Chunk IDs
+        # Build Chunk IDs & Metadata
         # --------------------------------------------------
 
         chunk_ids: list[str] = []
 
         chunk_metadata: list[dict] = []
 
-        for index in range(len(chunks)):
+        for index, _ in enumerate(
+            chunks,
+        ):
 
             chunk_ids.append(
-                str(uuid4())
+                str(
+                    uuid4(),
+                )
             )
 
             chunk_metadata.append(
@@ -295,7 +312,8 @@ class IngestionService:
             len(entities),
         )
 
-        # --------------------------------------------------
+
+            # --------------------------------------------------
         # Extract Relationships
         # --------------------------------------------------
 
@@ -303,39 +321,59 @@ class IngestionService:
             "Extracting relationships."
         )
 
-        relationships = relationship_extractor.extract(
+        raw_relationships = relationship_extractor.extract(
             cleaned_text,
             entities,
         )
 
         logger.info(
-            "Extracted %d relationships.",
+            "Extracted %d raw relationships.",
+            len(raw_relationships),
+        )
+
+        # --------------------------------------------------
+        # Resolve Entity References
+        # --------------------------------------------------
+
+        logger.info(
+            "Resolving entity references."
+        )
+
+        relationships = entity_resolver.resolve_relationships(
+            entities,
+            raw_relationships,
+        )
+
+        logger.info(
+            "Resolved %d relationships.",
             len(relationships),
         )
 
         # --------------------------------------------------
-        # Build Knowledge Graph
+        # Persist Knowledge Graph
         # --------------------------------------------------
 
         logger.info(
-            "Updating Knowledge Graph."
+            "Persisting entities into Neo4j."
         )
 
-        for entity in entities:
-            graph_repository.add_entity(
-                entity,
-            )
+        graph_repository.add_entities(
+            entities,
+        )
 
-        for relationship in relationships:
-            graph_repository.add_relationship(
-                relationship,
-            )
+        logger.info(
+            "Persisting relationships into Neo4j."
+        )
+
+        graph_repository.add_relationships(
+            relationships,
+        )
 
         logger.info(
             "Knowledge Graph updated successfully."
         )
 
-        # --------------------------------------------------
+            # --------------------------------------------------
         # Ingestion Completed
         # --------------------------------------------------
 
@@ -355,4 +393,5 @@ class IngestionService:
         )
 
 
-ingestion_service = IngestionService()        
+ingestion_service = IngestionService()                    
+

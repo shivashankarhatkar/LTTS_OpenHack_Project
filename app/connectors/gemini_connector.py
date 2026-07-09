@@ -32,7 +32,7 @@ class GeminiConnector:
             logger.info("Initializing Gemini client...")
 
             self._client = genai.Client(
-                api_key=settings.GEMINI_API_KEY,
+                api_key=settings.gemini_api_key,
             )
 
             logger.info("Gemini client initialized.")
@@ -55,7 +55,7 @@ class GeminiConnector:
         logger.info("Generating Gemini response.")
 
         response = self.client.models.generate_content(
-            model=settings.GEMINI_MODEL,
+            model=settings.gemini_model,
             contents=prompt,
         )
 

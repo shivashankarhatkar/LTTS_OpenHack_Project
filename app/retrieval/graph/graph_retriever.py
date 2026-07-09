@@ -65,7 +65,7 @@ class GraphRetriever:
             toLower(b.name) CONTAINS toLower($query)
 
         RETURN
-            a.id AS entity_id,
+            a.entity_id AS entity_id,
             a.name AS entity_name,
             labels(a)[0] AS entity_type,
             type(r) AS relationship,

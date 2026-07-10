@@ -572,9 +572,8 @@ docs/screenshots/neo4j_graph.png
 
 # 👨‍💻 Author
 
-**Shrinath Patil**
-
-Final Year B.E. Computer Science Engineering
+**Shivshankar Hatkar**
+AI Engineer | L & T Technology Services
 
 Enterprise AI | GraphRAG | LangGraph | Knowledge Graphs | Generative AI
 

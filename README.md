@@ -1,6 +1,6 @@
 # 🚀 Enterprise Knowledge Assistant (Hybrid GraphRAG + Knowledge Graph)
 
-> **Enterprise AI Knowledge Assistant powered by Hybrid GraphRAG, Knowledge Graphs, LangGraph Multi-Agent Orchestration, ChromaDB, Neo4j, FastAPI, and Google Gemini.**
+ **Enterprise AI Knowledge Assistant powered by Hybrid GraphRAG, Knowledge Graphs, LangGraph Multi-Agent Orchestration, ChromaDB, Neo4j, FastAPI, and Google Gemini.**
 
 An enterprise-grade AI assistant designed to transform unstructured organizational knowledge into an intelligent, searchable knowledge ecosystem. The platform combines **Vector Retrieval (RAG)**, **Knowledge Graph Retrieval**, **BM25 Keyword Search**, and **LLM-powered reasoning** to provide highly accurate, context-aware, and explainable responses for enterprise users.
 

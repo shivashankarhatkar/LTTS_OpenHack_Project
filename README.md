@@ -4,7 +4,7 @@
 
 An enterprise-grade AI assistant designed to transform unstructured organizational knowledge into an intelligent, searchable knowledge ecosystem. The platform combines **Vector Retrieval (RAG)**, **Knowledge Graph Retrieval**, **BM25 Keyword Search**, and **LLM-powered reasoning** to provide highly accurate, context-aware, and explainable responses for enterprise users.
 
----
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 📖 Overview
 
 Modern organizations generate thousands of documents including:

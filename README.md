@@ -6,7 +6,7 @@ An enterprise-grade AI assistant designed to transform unstructured organization
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 📖 Overview
-
+--------------------------------------------------------------
 Modern organizations generate thousands of documents including:
 
 - Employee Handbooks
